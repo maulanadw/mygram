@@ -1,0 +1,567 @@
+basePath: /
+definitions:
+  params.CreateCommentRequest:
+    properties:
+      message:
+        type: string
+      photo_id:
+        type: integer
+    type: object
+  params.CreateCommentResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      message:
+        type: string
+      photo_id:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  params.CreatePhotoRequest:
+    properties:
+      caption:
+        type: string
+      photo_url:
+        type: string
+      title:
+        type: string
+    type: object
+  params.CreatePhotoResponse:
+    properties:
+      caption:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      photo_url:
+        type: string
+      title:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  params.CreateSocialMediaRequest:
+    properties:
+      name:
+        type: string
+      social_media_url:
+        type: string
+    type: object
+  params.CreateSocialMediaResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      social_media_url:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  params.DeleteCommentResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  params.DeletePhotoResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  params.DeleteSocialMediaResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  params.DeleteUserResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  params.GetCommentResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      message:
+        type: string
+      photo:
+        $ref: '#/definitions/params.Photo'
+      photo_id:
+        type: integer
+      updated_at:
+        type: string
+      user:
+        $ref: '#/definitions/params.User'
+      user_id:
+        type: integer
+    type: object
+  params.GetPhotoResponse:
+    properties:
+      caption:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      photo_url:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      user:
+        $ref: '#/definitions/params.User'
+      user_id:
+        type: integer
+    type: object
+  params.GetSocialMediaResponses:
+    properties:
+      social_medias:
+        items:
+          $ref: '#/definitions/params.SocialMedia'
+        type: array
+    type: object
+  params.LoginUserRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  params.LoginUserResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  params.Photo:
+    properties:
+      caption:
+        type: string
+      id:
+        type: integer
+      photo_url:
+        type: string
+      title:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  params.RegisterUserRequest:
+    properties:
+      age:
+        type: integer
+      email:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  params.RegisterUserResponse:
+    properties:
+      age:
+        type: integer
+      email:
+        type: string
+      id:
+        type: integer
+      username:
+        type: string
+    type: object
+  params.SocialMedia:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      social_media_url:
+        type: string
+      updated_at:
+        type: string
+      user:
+        $ref: '#/definitions/params.User'
+      user_id:
+        type: integer
+    type: object
+  params.UpdateCommentRequest:
+    properties:
+      message:
+        type: string
+    type: object
+  params.UpdateCommentResponse:
+    properties:
+      id:
+        type: integer
+      message:
+        type: string
+      photo_url:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  params.UpdatePhotoRequest:
+    properties:
+      caption:
+        type: string
+      photo_url:
+        type: string
+      title:
+        type: string
+    type: object
+  params.UpdatePhotoResponse:
+    properties:
+      caption:
+        type: string
+      id:
+        type: integer
+      photo_url:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  params.UpdateSocialMediaRequest:
+    properties:
+      name:
+        type: string
+      social_media_url:
+        type: string
+    type: object
+  params.UpdateSocialMediaResponse:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      social_media_url:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  params.UpdateUserRequest:
+    properties:
+      email:
+        type: string
+      username:
+        type: string
+    type: object
+  params.UpdateUserResponse:
+    properties:
+      age:
+        type: integer
+      email:
+        type: string
+      id:
+        type: integer
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  params.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      username:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: maulana@email.com
+    name: Maulana Dwi Wahyudi
+  description: MyGram is a simple social media for saving photos or making comments
+    on other people's photos
+  title: MyGram
+  version: "1.0"
+paths:
+  /comments:
+    get:
+      description: API for Get All Comment
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.GetCommentResponse'
+      tags:
+      - Comment
+    post:
+      consumes:
+      - application/json
+      description: API for Adding Comment
+      parameters:
+      - description: Create Comment
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/params.CreateCommentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.CreateCommentResponse'
+      tags:
+      - Comment
+  /comments/:commentId:
+    delete:
+      description: API for Deleting Comment
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.DeleteCommentResponse'
+      tags:
+      - Comment
+    put:
+      consumes:
+      - application/json
+      description: API for Updating Comment
+      parameters:
+      - description: Update Comment
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/params.UpdateCommentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.UpdateCommentResponse'
+      tags:
+      - Comment
+  /photos:
+    get:
+      description: API for Get All Photo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/params.GetPhotoResponse'
+            type: array
+      tags:
+      - Photo
+    post:
+      consumes:
+      - application/json
+      description: API for Adding Photo
+      parameters:
+      - description: Create Photo
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/params.CreatePhotoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.CreatePhotoResponse'
+      tags:
+      - Photo
+  /photos/:photoId:
+    delete:
+      description: API for Deleting Photo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.DeletePhotoResponse'
+      tags:
+      - Photo
+    put:
+      consumes:
+      - application/json
+      description: API for Updating Photo
+      parameters:
+      - description: Update Photo
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/params.UpdatePhotoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.UpdatePhotoResponse'
+      tags:
+      - Photo
+  /socialmedias:
+    get:
+      description: API for Get All Social Media
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.GetSocialMediaResponses'
+      tags:
+      - Social Media
+    post:
+      consumes:
+      - application/json
+      description: API for Adding Social Media
+      parameters:
+      - description: Create Social Media
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/params.CreateSocialMediaRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.CreateSocialMediaResponse'
+      tags:
+      - Social Media
+  /socialmedias/:socialMediaId:
+    delete:
+      description: API for Deleting Social Media
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.DeleteSocialMediaResponse'
+      tags:
+      - Social Media
+    put:
+      consumes:
+      - application/json
+      description: API for Updating Social Media
+      parameters:
+      - description: Update Social Media
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/params.UpdateSocialMediaRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.UpdateSocialMediaResponse'
+      tags:
+      - Social Media
+  /users/:userid:
+    delete:
+      consumes:
+      - application/json
+      description: API for delete user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.DeleteUserResponse'
+      tags:
+      - User
+    put:
+      consumes:
+      - application/json
+      description: API for update user
+      parameters:
+      - description: Update user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/params.UpdateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.UpdateUserResponse'
+      tags:
+      - User
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      description: API for user login
+      parameters:
+      - description: Login user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/params.LoginUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.LoginUserResponse'
+      tags:
+      - User
+  /users/register:
+    post:
+      consumes:
+      - application/json
+      description: API for user registration
+      parameters:
+      - description: Register User
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/params.RegisterUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.RegisterUserResponse'
+      tags:
+      - User
+swagger: "2.0"
